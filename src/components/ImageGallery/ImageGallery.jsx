@@ -1,26 +1,19 @@
+import ImageCard from "../ImageCard/ImageCard";
+import css from "./ImageGallery.module.css";
 
-
-const ImageGallery = ({images}) => {
+const ImageGallery = ({ images, openModal }) => {
   return (
-    <ul>
-        {Array.isArray(images) &&
-          images.map((image) => {
-            return (
-              <li key={image.id}>
-                <img
-                  width={250}
-                  src={image.urls.small}
-                  alt={image.description}
-                />
-                <h2>{image.user.username}</h2>
-                <h3>{image.user.location}</h3>
-                {/* <h3>published_at</h3> */}
-              </li>
-            );
-          })}
-      </ul>
+    <ul className={css.imagesList}>
+      {Array.isArray(images) &&
+        images.map((image) => {
+          return (
+            <li className={css.imageItem} key={image.id}>
+              <ImageCard image={image} openModal={openModal} />
+            </li>
+          );
+        })}
+    </ul>
+  );
+};
 
-  )
-}
-
-export default ImageGallery
+export default ImageGallery;
